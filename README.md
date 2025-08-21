@@ -1,4 +1,4 @@
-This serves as a complete & simple example to test joystuick support (I was troubleshooting https://github.com/raysan5/raylib/issues/3651).
+This serves as a complete & simple example to test gamepad support (I was troubleshooting https://github.com/raysan5/raylib/issues/3651).
 
 I use cmake:
 
