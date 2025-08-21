@@ -19,7 +19,7 @@ jobs:
       - name: Build Native Windows Host
         run: |
           cmake -B build -DCMAKE_BUILD_TYPE=Release
-          cmake --build build
+          cmake --build build --config Release
       - name: Create Zip Archive
         run: |
           Compress-Archive -Path '.\resources\*' -DestinationPath '.\release-windows-x86-64.zip'
