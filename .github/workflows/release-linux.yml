@@ -21,6 +21,8 @@ jobs:
           sudo apt-get install -y --no-install-recommends libglfw3 libglfw3-dev libx11-dev libxcursor-dev libxrandr-dev libxinerama-dev libxi-dev libxext-dev libxfixes-dev libwayland-dev libwayland-bin libxkbcommon-dev
           cmake -B build -DCMAKE_BUILD_TYPE=Release
           cmake --build build
+      - name: Create Zip Archive
+        run: |
           zip -r release-linux-x86-64.zip resources
           cd build
           zip ../release-linux-x86-64.zip raylib-gamepadtest
