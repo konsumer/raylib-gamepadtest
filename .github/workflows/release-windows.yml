@@ -1,0 +1,28 @@
+name: Release Windows
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Native Windows Host
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build
+          zip -r release-windows-x86-64.zip resources
+          cd build
+          zip ../release-windows-x86-64.zip raylib-gamepadtest.exe
+      - run: gh release upload ${{github.event.release.tag_name}} release-windows-x86-64.zip
+        env:
+          GH_TOKEN: ${{ github.token }}
