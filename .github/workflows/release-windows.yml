@@ -24,9 +24,9 @@ jobs:
         run: |
           Compress-Archive -Path '.\resources\*' -DestinationPath '.\release-windows-x86-64.zip'
           dir
-          cd build/x64
+          cd build/x64/Debug
           dir 
-          Compress-Archive -Update -Path '.\raylib-gamepadtest.exe' -DestinationPath '..\release-windows-x86-64.zip'
+          Compress-Archive -Update -Path '.\raylib-gamepadtest.exe' -DestinationPath '..\..\release-windows-x86-64.zip'
       - run: gh release upload ${{github.event.release.tag_name}} release-windows-x86-64.zip
         env:
           GH_TOKEN: ${{ github.token }}
