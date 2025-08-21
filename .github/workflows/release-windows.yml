@@ -23,8 +23,8 @@ jobs:
       - name: Create Zip Archive
         run: |
           Compress-Archive -Path '.\resources\*' -DestinationPath '.\release-windows-x86-64.zip'
-          chdir build
-          Compress-Archive -Update -Path 'raylib-gamepadtest.exe' -DestinationPath '..\release-windows-x86-64.zip'
+          cd build
+          Compress-Archive -Update -Path '.\raylib-gamepadtest.exe' -DestinationPath '..\release-windows-x86-64.zip'
       - run: gh release upload ${{github.event.release.tag_name}} release-windows-x86-64.zip
         env:
           GH_TOKEN: ${{ github.token }}
