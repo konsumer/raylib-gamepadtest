@@ -36,15 +36,15 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
+    SetConfigFlags(FLAG_MSAA_4X_HINT);  // Set MSAA 4X hint before windows creation
+
+    InitWindow(screenWidth, screenHeight, "raylib [core] example - gamepad input");
+
     // This gets around old IDs (see https://github.com/raysan5/raylib/issues/3651)
     // https://raw.githubusercontent.com/mdqinc/SDL_GameControllerDB/refs/heads/master/gamecontrollerdb.txt
     char *mappings = LoadFileText("resources/gamecontrollerdb.txt");
     SetGamepadMappings(mappings);
     UnloadFileText(mappings);
-
-    SetConfigFlags(FLAG_MSAA_4X_HINT);  // Set MSAA 4X hint before windows creation
-
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - gamepad input");
 
     Texture2D texPs3Pad = LoadTexture("resources/ps3.png");
     Texture2D texXboxPad = LoadTexture("resources/xbox.png");
