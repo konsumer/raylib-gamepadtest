@@ -25,6 +25,11 @@ set(CMAKE_COLOR_DIAGNOSTICS ON)
 
 include(FetchContent)
 
+SET(BUILD_EXAMPLES OFF CACHE BOOL "Build libfoo shared library")
+IF (EMSCRIPTEN)
+SET(PLATFORM "Web" CACHE STRING "Build for emscripten")
+ENDIF()
+
 FetchContent_Declare(
     raylib
     URL https://github.com/raysan5/raylib/archive/refs/tags/5.5.zip
@@ -35,6 +40,6 @@ add_executable(${PROJECT_NAME} core_input_gamepad.c)
 TARGET_LINK_LIBRARIES(${PROJECT_NAME} raylib)
 
 IF (EMSCRIPTEN)
-  SET(CMAKE_EXECUTABLE_SUFFIX ".mjs")
-  TARGET_LINK_OPTIONS(host PRIVATE -sASSERTIONS=1 -sASYNCIFY -sALLOW_MEMORY_GROWTH=1)  
+  SET(CMAKE_EXECUTABLE_SUFFIX ".html")
+  TARGET_LINK_OPTIONS(${PROJECT_NAME} PRIVATE -sASSERTIONS=1 -sASYNCIFY  -sUSE_GLFW=3 -sALLOW_MEMORY_GROWTH=1 --preload-file ${CMAKE_SOURCE_DIR}/resources@/)  
 ENDIF()
