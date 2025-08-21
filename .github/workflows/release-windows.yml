@@ -22,7 +22,7 @@ jobs:
           cmake --build build --config Release
       - name: Create Zip Archive
         run: |
-          Compress-Archive -Path '.\resources\*' -DestinationPath '.\release-windows-x86-64.zip'
+          Compress-Archive -Path '.\resources' -DestinationPath '.\release-windows-x86-64.zip'
           dir
           cd build/Release
           dir 
