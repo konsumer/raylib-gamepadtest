@@ -27,7 +27,7 @@ jobs:
       - name: Create universal binary
         run: |
           lipo -create build_x86_64/raylib-gamepadtest build_arm64/raylib-gamepadtest -output raylib-gamepadtest
-          zip -x .DS_Store release-mac.zip -r resources raylib-gamepadtest
+          zip -r release-mac.zip resources raylib-gamepadtest -x "**/.DS_Store"
       - name: Upload asset to release
         run: gh release upload ${{ github.event.release.tag_name }} release-mac.zip
         env:
